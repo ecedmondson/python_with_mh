@@ -132,9 +132,11 @@ web_data = "         For the low, low price of some cheese, you too can can get 
 #    line feeds. You want to each line feed to be a space. Write code that will do this.
 scraped = "When\nwill\nwe\nbe\free\nfrom\nthis\nwretched\ncold."
 # PUT THE ANSWER TO J HERE
-# K. Imagine that someone else has solved J for you and is asking you to check over their work. What
+# K. Imagine that someone else has solved J for you and is asking you to check over their work. This
+#    person wants to print the updated my_letters to their screen to see the new changes. What
 #    is wrong with the following solution?
 #    my_letters.replace("\n", " ")
+#    print(my_letters)
 # PUT THE ANSWER TO K HERE
 
 
