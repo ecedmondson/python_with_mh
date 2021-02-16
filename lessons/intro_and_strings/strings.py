@@ -136,3 +136,7 @@ scraped = "When\nwill\nwe\nbe\free\nfrom\nthis\nwretched\ncold."
 #    is wrong with the following solution?
 #    my_letters.replace("\n", " ")
 # PUT THE ANSWER TO K HERE
+
+
+# Remember that there was a little blurb about strings behaving like lists/arrays/sequences.
+# The next exercise set will be about these properties.
