@@ -110,21 +110,39 @@ def my_cool_function(pet_name):
 # A. Use the function named multiply_and_subtract_five. Given that num1 is equal to 7 and num2 is 3,
 #    what do you expect the output of the function to be? Call the function and test it.
 # # ANSWER A GOES HERE
+# # # MH guess: (7*3)-5=16
 # # ANSWER A CODE GOES HERE
+print("the answer to exercise 1A is:",multiply_and_subtract_five(7,3))
 # B. Look at the following function definition  and subsequent code and then 
 #    predict what will be printed by the print function. Uncomment the code
 #    and test your prediction.
-   
-#    def is_double_digits(number):
-#         number = abs(number)
-#         return number >= 10 and number <= 100
+
+def is_double_digits(number):
+    number = abs(number)
+    return number >= 10 and number <= 100
  
-#    print(is_double_digits)
+print(is_double_digits)
 
 # # ANSWER B GOES HERE
+# # MH prediction:
+# # it ensures the number is positive by giving the absolute value of the number,
+# # then you can see if it is between 10 & 100
+# # (where the latter is inclusive and the former is not?)
+# # and you get a yes if it is?
+# # 
+# # except... what is it doing to print the function without giving it any input?
+# # ran it & got:
+# # <function is_double_digits at 0x7fdc4e268820>
+
+print(is_double_digits(4))
+# # 10 gives me a "True"
+# # 4 gives a "False"
+
 # C. Practice learning to read code. Based on reading the function name and code definition
 #    of is_double_digits, what do you think the the function call abs(arg) does? 
 # # ANSWER C GOES HERE
+# # MH: oh, i was too quick. i guessed absolute in 1B, but i then Googled to confirm
+
 # D. Imagine that someone has asked you to write a function that will determine if 
 #    a number is negative or positive. Your function should return a Boolean data type
 #    (i.e. either return True, return False, or an expression that evaluates to a boolean,
@@ -133,6 +151,15 @@ def my_cool_function(pet_name):
 #     is_number_positive. You may want to google python if statements to finish this function. 
 
 # # ANSWER D GOES HERE
+
+def is_number_positive(number):
+    if number == 0:
+        return "Neither"
+    else:
+        return number >= 1
+
+print(is_number_positive(0))
+        
 
 
 # 1.5 A clarification on scope
