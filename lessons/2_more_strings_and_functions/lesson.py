@@ -231,7 +231,10 @@ def cool_func():
 # Please list the globally available names in this list, with comman separation and quotes
 # i.e. like this STUFF = ["FIRST THING", "SECOND THING", "ETC"]
 
-GLOBAL_NAMES = ["var1"]
+GLOBAL_NAMES = ["var1", "cool_func"]
+# # cool_func added after failing test.py.
+# # SHOULD HAVE BEEN RUNNING THE TEST, because until this moment i had not realized that
+# # functions define a variable. that's how the return works?
 
 # 3. Iterable Properties of Strings
 # An iterable in Python is any data structure that contains data as a collective and where
@@ -419,12 +422,15 @@ max_char = max(my_random_chars)
 def sort_chars(string):
     string_sorted = sorted(string)
     string_sorted = "".join(string_sorted)
-    return string, "sorted is", string_sorted
+    return string_sorted
 
-print(sort_chars(my_random_chars))
+print(my_random_chars, "sorted is", sort_chars(my_random_chars))
 
 # # i realized this literally returns e.g. 'the total length of the string', 'l;k2;34lksd;lkfg', 'is', 16
 # # how do i have it return e.g. the total length of the string l;k2;34lksd;lkfg is 16
+
+# # # this seems to be why it is failing test.py
+# # # i think i fixed it, by just pulling the commentary out of the function and into the print.
 
 # 2. Write a function that takes a string and returns the value of the character at the index which is
 #    half of the total length of the string  if the string is even,
@@ -438,7 +444,8 @@ def dobby_search(string):
         return string[len(string)-1]
 
 print(dobby_search(my_random_chars))
-        
+
+# # # this one is failing the test, but i am not sure why.
 
 # 3. Write a function that takes in a string and return the ordinal value of the minimum char in the string
 #    or -1 if it is an empty string. Name the function min_to_ord.
