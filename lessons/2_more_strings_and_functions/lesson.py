@@ -178,21 +178,21 @@ print(is_number_positive(0))
 
 # So for example, let's consider this code:
 
-# NAME = "ED"
+NAME = "ED"
 
-# def name_func():
-#     print("I am inside the scope of name_func")
-#     print("I am going to print NAME, then redefine, defined a new variable, then print again.")
-#     global NAME
-#     print(NAME)
-#     NAME = "SAK"
-#     other_variable="asdfasdf"
-#     print(NAME)
+def name_func():
+    print("I am inside the scope of name_func")
+    print("I am going to print NAME, then redefine, defined a new variable, then print again.")
+    global NAME
+    print(NAME)
+    NAME = "SAK"
+    other_variable="asdfasdf"
+    print("this is the NAME variable: ", NAME, "; but this is the other_variable:", other_variable)
 
-# print("I am going to call name_func")
-# name_func()
-# print("I am now back on the global scope.")
-# print(NAME)
+print("I am going to call name_func")
+name_func()
+print("I am now back on the global scope.")
+print(NAME)
 # # print(other_variable)
 
 # Let's define this code in terms of scope terminology:
@@ -213,6 +213,11 @@ print(is_number_positive(0))
 # name_func local scope? Will the change to NAME persist when the name_func scope ends? Write
 # your predictions and test them.  Uncomment the code above and run it.  
 # # ANSWER TO A GOES HERE
+# # MH: before name_func is called, Name = "ED"
+# # inside name_func, Name is redifined to "SAK",
+# # but once we are outside name_func,
+# # Name will revert to "ED"
+
 # B. Given the following code, list all names that will be available at the global level.
 
 var1 = "JJ Flewellen"
@@ -226,7 +231,7 @@ def cool_func():
 # Please list the globally available names in this list, with comman separation and quotes
 # i.e. like this STUFF = ["FIRST THING", "SECOND THING", "ETC"]
 
-GLOBAL_NAMES = []
+GLOBAL_NAMES = ["var1"]
 
 # 3. Iterable Properties of Strings
 # An iterable in Python is any data structure that contains data as a collective and where
@@ -262,6 +267,8 @@ last_letter = my_string[12]
 print(last_letter)
 
 # What do you predict first_letter will be when printed? Last letter? Uncomment the code and test it. 
+# # first will be "a"
+# # last will be m
 
 # There is a similar idea to indexing called slicing. Slicing allows us to take subparts of strings based on indexes.
 # Consider the following string:
@@ -273,12 +280,17 @@ print(mad)
 # Much like with the find() str method, the first index is inclusive and the last index is exclusive, which is why,
 # even though the 'd' in Mad is at index 5, the slice goes through index 6.
 
-# What do you think these will print? Write your predictions then test the code. 
+# What do you think these will print? Write your predictions then test the code.
+# # "Dob JJ"
+# # i have idea about these negatives? because the index starts at zero...
+# # maybe "Ed Mad"
+# # "Ed"?
 
-# print(names[7:])
-# print(names[:-7])
-# print(names[-2:])
+print(names[7:])
+print(names[:-7])
+print(names[-2:])
 
+# # ah, so negative indexes count from the right!
 
 # In the above example, variables are set to equal the indexed value of certain positions in my_string. iterables
 # can also be "unpacked," that is, correlated with names on index basis. Consider the much shorter string "short":
@@ -290,8 +302,10 @@ print(first)
 print(middle)
 print(last)
 
-# What do you predict will happen when short is unpacked into the individual variables first,middle and last? 
-# Uncomment the ode and test it. 
+# What do you predict will happen when short is unpacked into the individual variables first, middle and last? 
+# # will it distribute the list into three separate lists?
+
+# Uncomment the code and test it. 
 
 # Sometimes in code we want to use all individual components of an iterable on a case by case basis
 # without caring about what the numeric value of the component's index is. Consider for example, if you
@@ -299,19 +313,19 @@ print(last)
 # solve this problem you want to be able to access every single index, but it doesn't matter in particular
 # what the index happens to be. That is to say, something like this would be exhausting to code and very brittle:
 
-total_letters = len(my_string)
-current_index = 0
-while current_index < total_letters:
-  capitalized = my_string[current_index].capitalize()
-  print(capitalized)
-  current_index = current_index + 1
+# total_letters = len(my_string)
+# current_index = 0
+# while current_index < total_letters:
+#   capitalized = my_string[current_index].capitalize()
+#   print(capitalized)
+#   current_index = current_index + 1
 
 # That code works, but it is significantly more complex than it needs to be. The current_index variable is only
 # being using to keep track of where you are; it isn't particularly useful otherwise. Situations like these benefit
 # from the use of what is called a for loop. Consider this much cleaner code:
 
-for letter in my_string:
-    print(letter.capitalize())
+# for letter in my_string:
+#     print(letter.capitalize())
 
 
 # Before looking at some Python builtin functions that operate on iterables, let's consider a special case: the empty string.
@@ -352,7 +366,9 @@ print(bool(non_empty))
 # Based on previous examples we should be able to predict what will happen if we print one of these variables
 # without the bool() typecast function call (i.e. print(zero) will print 0). The bool() typecast call will convert
 # these values into either True or False. Before reading the next paragraph, what do you predict the truthieness
-# value of each of these variables will be? 
+# value of each of these variables will be?
+
+# # so... i have no idea.
 
 # If you predicted that zero, negative and empty would be False and positive and non_empty would be True, then you are
 # correct. Empty-strings are falsey values. This allow us to use individual objects in truthiness statements like this:
@@ -363,6 +379,7 @@ print(bool(non_empty))
 #     print(f"The first letter of my_str is {my_str[0]}")
 
 # Do you predict that the sentence will be printed? Uncomment the code and find out.
+# # the if will come out false (because empty strings are falsey), so nothing will print.
 
 # With all of this, we can finally look at some function methods that work on strings qua iterables. These
 # functions will work on other iterables we will learn about in future lessons, so be careful not
@@ -399,25 +416,81 @@ max_char = max(my_random_chars)
 # 1. Write a function that takes a string, sorts the characters in the string, and returns a string
 #    with the individual characters sorted. Name this function sort_chars.
 
-# 2. Write a function that takes a string and returns the value of the character at the index which is half of the
-#    total length of the string  if the string is even, the value of the penultimate character if the string is odd, 
+def sort_chars(string):
+    string_sorted = sorted(string)
+    string_sorted = "".join(string_sorted)
+    return string, "sorted is", string_sorted
+
+print(sort_chars(my_random_chars))
+
+# # i realized this literally returns e.g. 'the total length of the string', 'l;k2;34lksd;lkfg', 'is', 16
+# # how do i have it return e.g. the total length of the string l;k2;34lksd;lkfg is 16
+
+# 2. Write a function that takes a string and returns the value of the character at the index which is
+#    half of the total length of the string  if the string is even,
+#    the value of the penultimate character if the string is odd, 
 #    and 'Dobby' if an empty-string or length 1. Name this function dobby_search.
+
+def dobby_search(string):
+    if (len(string) % 2) == 0:
+        return string[len(string)//2]
+    else:
+        return string[len(string)-1]
+
+print(dobby_search(my_random_chars))
+        
 
 # 3. Write a function that takes in a string and return the ordinal value of the minimum char in the string
 #    or -1 if it is an empty string. Name the function min_to_ord.
 
+def min_to_ord(string):
+    if ord(min(string)) >= 0:
+        return ord(min(string))
+    else:
+        return -1
+
+print(min_to_ord(my_random_chars))
+
+
 # 4. Write a function takes in a string and returns the ordinal value of the maximum char in the string
 # or -1 if it is an empty string. Name the function max_to_ord.
 
-# 5. Write a function that takes in two argumnets: the first a string and the second a character. Return
+def max_to_ord(string):
+    if ord(max(string)) >= 0:
+        return ord(max(string))
+    else:
+        return -1
+
+print(max_to_ord(my_random_chars))
+
+# 5. Write a function that takes in two arguments: the first a string and the second a character. Return
 # how many times that character is found in the string. Name the function char_count.
+
+def char_count(string, char):
+    char_count = 0
+    for characters in string:
+        if characters == char:
+            char_count = char_count + 1
+        else:
+            char_count = char_count
+    return char_count
+
+print(char_count(my_random_chars, "2"))
+
 
 # 6. Imagine that you are scraping text data from the internet and want to print that data to your console. 
 #    Write a function that takes one argument, the data, and will return the data with all extra space stripped 
 #    away if any data is found and which returns "No data found!" if no data was found from scraping the internet. 
 #    Name the function pretty_format.
 
+def pretty_format(text):
+    if bool(text) == False:
+        return "No Data Found!"
+    else:
+        return text.strip()
 
-
+print(pretty_format(my_random_chars))
+print(pretty_format(empty))
+print(pretty_format("         For the low, low price of some cheese, you too can can get in on the nacho party.      "))
 
 
