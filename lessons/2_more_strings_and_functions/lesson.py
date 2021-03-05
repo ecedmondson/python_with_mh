@@ -113,6 +113,15 @@ def my_cool_function(pet_name):
 # # # MH guess: (7*3)-5=16
 # # ANSWER A CODE GOES HERE
 print("the answer to exercise 1A is:",multiply_and_subtract_five(7,3))
+print("the answer to exercise 1A is: {}.".format(multiply_and_subtract_five(7,3)))
+
+name = "Emily"
+food = "tacos"
+print("{} would like to eat some {}".format(name, food))
+
+print("{name} would like to eat some {food}.")
+# # # MH why isn't this f-string working?
+
 # B. Look at the following function definition  and subsequent code and then 
 #    predict what will be printed by the print function. Uncomment the code
 #    and test your prediction.
@@ -152,11 +161,10 @@ print(is_double_digits(4))
 
 # # ANSWER D GOES HERE
 
-def is_number_positive(number):
+def is_number_positive(number):    
     if number == 0:
         return "Neither"
-    else:
-        return number >= 1
+    return number >=1
 
 print(is_number_positive(0))
         
@@ -235,6 +243,7 @@ GLOBAL_NAMES = ["var1", "cool_func"]
 # # cool_func added after failing test.py.
 # # SHOULD HAVE BEEN RUNNING THE TEST, because until this moment i had not realized that
 # # functions define a variable. that's how the return works?
+# # # putting this here instead of just the pull request: names can be defined as a function or a variable?
 
 # 3. Iterable Properties of Strings
 # An iterable in Python is any data structure that contains data as a collective and where
@@ -375,6 +384,7 @@ print(bool(non_empty))
 
 # If you predicted that zero, negative and empty would be False and positive and non_empty would be True, then you are
 # correct. Empty-strings are falsey values. This allow us to use individual objects in truthiness statements like this:
+# # NOPE, only zero and empty are false; any number and anything nonempty are true.
 
 # my_str = ""
 
@@ -425,6 +435,8 @@ def sort_chars(string):
     return string_sorted
 
 print(my_random_chars, "sorted is", sort_chars(my_random_chars))
+print("{my_random_chars} sorted is {sort_chars(my_random_chars)}")
+# # # MH what's wrong with my f string?
 
 # # i realized this literally returns e.g. 'the total length of the string', 'l;k2;34lksd;lkfg', 'is', 16
 # # how do i have it return e.g. the total length of the string l;k2;34lksd;lkfg is 16
@@ -438,12 +450,16 @@ print(my_random_chars, "sorted is", sort_chars(my_random_chars))
 #    and 'Dobby' if an empty-string or length 1. Name this function dobby_search.
 
 def dobby_search(string):
-    if (len(string) % 2) == 0:
+    if len(string) <= 1:
+        return "Dobby"
+    elif (len(string) % 2) == 0:
         return string[len(string)//2]
     else:
         return string[len(string)-1]
+    return "Dobby"
 
 print(dobby_search(my_random_chars))
+print(dobby_search(''))
 
 # # # this one is failing the test, but i am not sure why.
 
@@ -451,10 +467,9 @@ print(dobby_search(my_random_chars))
 #    or -1 if it is an empty string. Name the function min_to_ord.
 
 def min_to_ord(string):
-    if ord(min(string)) >= 0:
-        return ord(min(string))
-    else:
+    if not string:
         return -1
+    return ord(min(string))
 
 print(min_to_ord(my_random_chars))
 
@@ -463,10 +478,9 @@ print(min_to_ord(my_random_chars))
 # or -1 if it is an empty string. Name the function max_to_ord.
 
 def max_to_ord(string):
-    if ord(max(string)) >= 0:
-        return ord(max(string))
-    else:
+    if not string:
         return -1
+    return ord(max(string))
 
 print(max_to_ord(my_random_chars))
 
@@ -490,11 +504,10 @@ print(char_count(my_random_chars, "2"))
 #    away if any data is found and which returns "No data found!" if no data was found from scraping the internet. 
 #    Name the function pretty_format.
 
-def pretty_format(text):
-    if bool(text) == False:
+def pretty_format(string):
+    if not string:
         return "No Data Found!"
-    else:
-        return text.strip()
+    return string.strip()
 
 print(pretty_format(my_random_chars))
 print(pretty_format(empty))
