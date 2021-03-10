@@ -110,21 +110,48 @@ def my_cool_function(pet_name):
 # A. Use the function named multiply_and_subtract_five. Given that num1 is equal to 7 and num2 is 3,
 #    what do you expect the output of the function to be? Call the function and test it.
 # # ANSWER A GOES HERE
+# # # MH guess: (7*3)-5=16
 # # ANSWER A CODE GOES HERE
+print("the answer to exercise 1A is:",multiply_and_subtract_five(7,3))
+print("the answer to exercise 1A is: {}.".format(multiply_and_subtract_five(7,3)))
+
+name = "Emily"
+food = "tacos"
+print("{} would like to eat some {}".format(name, food))
+
+print("{name} would like to eat some {food}.")
+# # # MH why isn't this f-string working?
+
 # B. Look at the following function definition  and subsequent code and then 
 #    predict what will be printed by the print function. Uncomment the code
 #    and test your prediction.
-   
-#    def is_double_digits(number):
-#         number = abs(number)
-#         return number >= 10 and number <= 100
+
+def is_double_digits(number):
+    number = abs(number)
+    return number >= 10 and number <= 100
  
-#    print(is_double_digits)
+print(is_double_digits)
 
 # # ANSWER B GOES HERE
+# # MH prediction:
+# # it ensures the number is positive by giving the absolute value of the number,
+# # then you can see if it is between 10 & 100
+# # (where the latter is inclusive and the former is not?)
+# # and you get a yes if it is?
+# # 
+# # except... what is it doing to print the function without giving it any input?
+# # ran it & got:
+# # <function is_double_digits at 0x7fdc4e268820>
+
+print(is_double_digits(4))
+# # 10 gives me a "True"
+# # 4 gives a "False"
+
 # C. Practice learning to read code. Based on reading the function name and code definition
 #    of is_double_digits, what do you think the the function call abs(arg) does? 
 # # ANSWER C GOES HERE
+# # MH: oh, i was too quick. i guessed absolute in 1B, but i then Googled to confirm
+
 # D. Imagine that someone has asked you to write a function that will determine if 
 #    a number is negative or positive. Your function should return a Boolean data type
 #    (i.e. either return True, return False, or an expression that evaluates to a boolean,
@@ -133,6 +160,14 @@ def my_cool_function(pet_name):
 #     is_number_positive. You may want to google python if statements to finish this function. 
 
 # # ANSWER D GOES HERE
+
+def is_number_positive(number):    
+    if number == 0:
+        return "Neither"
+    return number >=1
+
+print(is_number_positive(0))
+        
 
 
 # 1.5 A clarification on scope
@@ -151,21 +186,21 @@ def my_cool_function(pet_name):
 
 # So for example, let's consider this code:
 
-# NAME = "ED"
+NAME = "ED"
 
-# def name_func():
-#     print("I am inside the scope of name_func")
-#     print("I am going to print NAME, then redefine, defined a new variable, then print again.")
-#     global NAME
-#     print(NAME)
-#     NAME = "SAK"
-#     other_variable="asdfasdf"
-#     print(NAME)
+def name_func():
+    print("I am inside the scope of name_func")
+    print("I am going to print NAME, then redefine, defined a new variable, then print again.")
+    global NAME
+    print(NAME)
+    NAME = "SAK"
+    other_variable="asdfasdf"
+    print("this is the NAME variable: ", NAME, "; but this is the other_variable:", other_variable)
 
-# print("I am going to call name_func")
-# name_func()
-# print("I am now back on the global scope.")
-# print(NAME)
+print("I am going to call name_func")
+name_func()
+print("I am now back on the global scope.")
+print(NAME)
 # # print(other_variable)
 
 # Let's define this code in terms of scope terminology:
@@ -186,6 +221,11 @@ def my_cool_function(pet_name):
 # name_func local scope? Will the change to NAME persist when the name_func scope ends? Write
 # your predictions and test them.  Uncomment the code above and run it.  
 # # ANSWER TO A GOES HERE
+# # MH: before name_func is called, Name = "ED"
+# # inside name_func, Name is redifined to "SAK",
+# # but once we are outside name_func,
+# # Name will revert to "ED"
+
 # B. Given the following code, list all names that will be available at the global level.
 
 var1 = "JJ Flewellen"
@@ -199,7 +239,11 @@ def cool_func():
 # Please list the globally available names in this list, with comman separation and quotes
 # i.e. like this STUFF = ["FIRST THING", "SECOND THING", "ETC"]
 
-GLOBAL_NAMES = []
+GLOBAL_NAMES = ["var1", "cool_func"]
+# # cool_func added after failing test.py.
+# # SHOULD HAVE BEEN RUNNING THE TEST, because until this moment i had not realized that
+# # functions define a variable. that's how the return works?
+# # # putting this here instead of just the pull request: names can be defined as a function or a variable?
 
 # 3. Iterable Properties of Strings
 # An iterable in Python is any data structure that contains data as a collective and where
@@ -235,6 +279,8 @@ last_letter = my_string[12]
 print(last_letter)
 
 # What do you predict first_letter will be when printed? Last letter? Uncomment the code and test it. 
+# # first will be "a"
+# # last will be m
 
 # There is a similar idea to indexing called slicing. Slicing allows us to take subparts of strings based on indexes.
 # Consider the following string:
@@ -246,12 +292,17 @@ print(mad)
 # Much like with the find() str method, the first index is inclusive and the last index is exclusive, which is why,
 # even though the 'd' in Mad is at index 5, the slice goes through index 6.
 
-# What do you think these will print? Write your predictions then test the code. 
+# What do you think these will print? Write your predictions then test the code.
+# # "Dob JJ"
+# # i have idea about these negatives? because the index starts at zero...
+# # maybe "Ed Mad"
+# # "Ed"?
 
-# print(names[7:])
-# print(names[:-7])
-# print(names[-2:])
+print(names[7:])
+print(names[:-7])
+print(names[-2:])
 
+# # ah, so negative indexes count from the right!
 
 # In the above example, variables are set to equal the indexed value of certain positions in my_string. iterables
 # can also be "unpacked," that is, correlated with names on index basis. Consider the much shorter string "short":
@@ -263,8 +314,10 @@ print(first)
 print(middle)
 print(last)
 
-# What do you predict will happen when short is unpacked into the individual variables first,middle and last? 
-# Uncomment the ode and test it. 
+# What do you predict will happen when short is unpacked into the individual variables first, middle and last? 
+# # will it distribute the list into three separate lists?
+
+# Uncomment the code and test it. 
 
 # Sometimes in code we want to use all individual components of an iterable on a case by case basis
 # without caring about what the numeric value of the component's index is. Consider for example, if you
@@ -272,19 +325,19 @@ print(last)
 # solve this problem you want to be able to access every single index, but it doesn't matter in particular
 # what the index happens to be. That is to say, something like this would be exhausting to code and very brittle:
 
-total_letters = len(my_string)
-current_index = 0
-while current_index < total_letters:
-  capitalized = my_string[current_index].capitalize()
-  print(capitalized)
-  current_index = current_index + 1
+# total_letters = len(my_string)
+# current_index = 0
+# while current_index < total_letters:
+#   capitalized = my_string[current_index].capitalize()
+#   print(capitalized)
+#   current_index = current_index + 1
 
 # That code works, but it is significantly more complex than it needs to be. The current_index variable is only
 # being using to keep track of where you are; it isn't particularly useful otherwise. Situations like these benefit
 # from the use of what is called a for loop. Consider this much cleaner code:
 
-for letter in my_string:
-    print(letter.capitalize())
+# for letter in my_string:
+#     print(letter.capitalize())
 
 
 # Before looking at some Python builtin functions that operate on iterables, let's consider a special case: the empty string.
@@ -325,10 +378,13 @@ print(bool(non_empty))
 # Based on previous examples we should be able to predict what will happen if we print one of these variables
 # without the bool() typecast function call (i.e. print(zero) will print 0). The bool() typecast call will convert
 # these values into either True or False. Before reading the next paragraph, what do you predict the truthieness
-# value of each of these variables will be? 
+# value of each of these variables will be?
+
+# # so... i have no idea.
 
 # If you predicted that zero, negative and empty would be False and positive and non_empty would be True, then you are
 # correct. Empty-strings are falsey values. This allow us to use individual objects in truthiness statements like this:
+# # NOPE, only zero and empty are false; any number and anything nonempty are true.
 
 # my_str = ""
 
@@ -336,6 +392,7 @@ print(bool(non_empty))
 #     print(f"The first letter of my_str is {my_str[0]}")
 
 # Do you predict that the sentence will be printed? Uncomment the code and find out.
+# # the if will come out false (because empty strings are falsey), so nothing will print.
 
 # With all of this, we can finally look at some function methods that work on strings qua iterables. These
 # functions will work on other iterables we will learn about in future lessons, so be careful not
@@ -372,25 +429,88 @@ max_char = max(my_random_chars)
 # 1. Write a function that takes a string, sorts the characters in the string, and returns a string
 #    with the individual characters sorted. Name this function sort_chars.
 
-# 2. Write a function that takes a string and returns the value of the character at the index which is half of the
-#    total length of the string  if the string is even, the value of the penultimate character if the string is odd, 
+def sort_chars(string):
+    string_sorted = sorted(string)
+    string_sorted = "".join(string_sorted)
+    return string_sorted
+
+print(my_random_chars, "sorted is", sort_chars(my_random_chars))
+print("{my_random_chars} sorted is {sort_chars(my_random_chars)}")
+# # # MH what's wrong with my f string?
+
+# # i realized this literally returns e.g. 'the total length of the string', 'l;k2;34lksd;lkfg', 'is', 16
+# # how do i have it return e.g. the total length of the string l;k2;34lksd;lkfg is 16
+
+# # # this seems to be why it is failing test.py
+# # # i think i fixed it, by just pulling the commentary out of the function and into the print.
+
+# 2. Write a function that takes a string and returns the value of the character at the index which is
+#    half of the total length of the string  if the string is even,
+#    the value of the penultimate character if the string is odd, 
 #    and 'Dobby' if an empty-string or length 1. Name this function dobby_search.
+
+def dobby_search(string):
+    if len(string) <= 1:
+        return "Dobby"
+    elif (len(string) % 2) == 0:
+        return string[len(string)//2]
+    else:
+        return string[len(string)-1]
+    return "Dobby"
+
+print(dobby_search(my_random_chars))
+print(dobby_search(''))
+
+# # # this one is failing the test, but i am not sure why.
 
 # 3. Write a function that takes in a string and return the ordinal value of the minimum char in the string
 #    or -1 if it is an empty string. Name the function min_to_ord.
 
+def min_to_ord(string):
+    if not string:
+        return -1
+    return ord(min(string))
+
+print(min_to_ord(my_random_chars))
+
+
 # 4. Write a function takes in a string and returns the ordinal value of the maximum char in the string
 # or -1 if it is an empty string. Name the function max_to_ord.
 
-# 5. Write a function that takes in two argumnets: the first a string and the second a character. Return
+def max_to_ord(string):
+    if not string:
+        return -1
+    return ord(max(string))
+
+print(max_to_ord(my_random_chars))
+
+# 5. Write a function that takes in two arguments: the first a string and the second a character. Return
 # how many times that character is found in the string. Name the function char_count.
+
+def char_count(string, char):
+    char_count = 0
+    for characters in string:
+        if characters == char:
+            char_count = char_count + 1
+        else:
+            char_count = char_count
+    return char_count
+
+print(char_count(my_random_chars, "2"))
+
 
 # 6. Imagine that you are scraping text data from the internet and want to print that data to your console. 
 #    Write a function that takes one argument, the data, and will return the data with all extra space stripped 
 #    away if any data is found and which returns "No data found!" if no data was found from scraping the internet. 
 #    Name the function pretty_format.
 
+def pretty_format(string):
+    if not string:
+        return "No Data Found!"
+    return string.strip()
 
-
+print(pretty_format(my_random_chars))
+print(pretty_format(empty))
+print(pretty_format("         For the low, low price of some cheese, you too can can get in on the nacho party.      "))
 
 
